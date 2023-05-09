@@ -15,7 +15,8 @@ function onInputChange(){
         clearContent();
         return;
     }
-    fetchCountries(countryName).then(countriesArr => {
+    fetchCountries(countryName)
+    .then(countriesArr => {
         if (countriesArr.length === 1){
             createCountryCard(countriesArr)
             Notiflix.Notify.success("Here you are.")
@@ -31,7 +32,10 @@ function onInputChange(){
         }
         clearContent()
     })
-    
+    .catch(err => {
+        clearContent();
+        Notiflix.Notify.failure("Oops, there is no country with that name");
+    })
 }
 function createCountriesList(country){
     clearContent();
